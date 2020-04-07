@@ -1,0 +1,8 @@
+{{each audio}}
+<li>
+    <span class="xiao-mplayer-list-cur" style="background-color: {{ $value.theme || theme }};"></span>
+    <span class="xiao-mplayer-list-index">{{ $index + index }}</span>
+    <span class="xiao-mplayer-list-title">{{ $value.name }}</span>
+    <span class="xiao-mplayer-list-author">{{ $value.artist }}</span>
+</li>
+{{/each}}

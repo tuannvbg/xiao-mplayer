@@ -1,0 +1,145 @@
+{{ if !options.fixed }}
+<div class="xiao-mplayer-body">
+    <div class="xiao-mplayer-pic" style="{{ if cover  }}background-image: url(&quot;{{ cover }}&quot;);{{ /if }}background-color: {{ options.theme }};">
+        <div class="xiao-mplayer-button xiao-mplayer-play">{{@ icons.play }}</div>
+    </div>
+    <div class="xiao-mplayer-info">
+        <div class="xiao-mplayer-music">
+            <span class="xiao-mplayer-title">No audio</span>
+            <span class="xiao-mplayer-author"></span>
+        </div>
+        <div class="xiao-mplayer-lrc">
+            <div class="xiao-mplayer-lrc-contents" style="transform: translateY(0); -webkit-transform: translateY(0);"></div>
+        </div>
+        <div class="xiao-mplayer-controller">
+            <div class="xiao-mplayer-bar-wrap">
+                <div class="xiao-mplayer-bar">
+                    <div class="xiao-mplayer-loaded" style="width: 0"></div>
+                    <div class="xiao-mplayer-played" style="width: 0; background: {{ options.theme }};">
+                        <span class="xiao-mplayer-thumb" style="background: {{ options.theme }};">
+                            <span class="xiao-mplayer-loading-icon">{{@ icons.loading }}</span>
+                        </span>
+                    </div>
+                </div>
+            </div>
+            <div class="xiao-mplayer-time">
+                <span class="xiao-mplayer-time-inner">
+                    <span class="xiao-mplayer-ptime">00:00</span> / <span class="xiao-mplayer-dtime">00:00</span>
+                </span>
+                <span class="xiao-mplayer-icon xiao-mplayer-icon-back">
+                    {{@ icons.skip }}
+                </span>
+                <span class="xiao-mplayer-icon xiao-mplayer-icon-play">
+                    {{@ icons.play }}
+                </span>
+                <span class="xiao-mplayer-icon xiao-mplayer-icon-forward">
+                    {{@ icons.skip }}
+                </span>
+                <div class="xiao-mplayer-volume-wrap">
+                    <button type="button" class="xiao-mplayer-icon xiao-mplayer-icon-volume-down">
+                        {{@ icons.volumeDown }}
+                    </button>
+                    <div class="xiao-mplayer-volume-bar-wrap">
+                        <div class="xiao-mplayer-volume-bar">
+                            <div class="xiao-mplayer-volume" style="height: 80%; background: {{ options.theme }};"></div>
+                        </div>
+                    </div>
+                </div>
+                <button type="button" class="xiao-mplayer-icon xiao-mplayer-icon-order">
+                    {{ if options.order === 'list' }}{{@ icons.orderList }}{{ else if options.order === 'random' }}{{@ icons.orderRandom }}{{ /if }}
+                </button>
+                <button type="button" class="xiao-mplayer-icon xiao-mplayer-icon-loop">
+                    {{ if options.loop === 'one' }}{{@ icons.loopOne }}{{ else if options.loop === 'all' }}{{@ icons.loopAll }}{{ else if options.loop === 'none' }}{{@ icons.loopNone }}{{ /if }}
+                </button>
+                <button type="button" class="xiao-mplayer-icon xiao-mplayer-icon-menu">
+                    {{@ icons.menu }}
+                </button>
+                <button type="button" class="xiao-mplayer-icon xiao-mplayer-icon-lrc">
+                    {{@ icons.lrc }}
+                </button>
+            </div>
+        </div>
+    </div>
+    <div class="xiao-mplayer-notice"></div>
+    <div class="xiao-mplayer-miniswitcher"><button class="xiao-mplayer-icon">{{@ icons.right }}</button></div>
+</div>
+<ol class="xiao-mplayer-list{{ if options.listFolded }} xiao-mplayer-list-hide{{ /if }}">
+    {{ include './list-item.art' getObject({
+        theme: options.theme,
+        audio: options.audio,
+        index: 1
+    }) }}
+</ol>
+{{ else }}
+<ol class="xiao-mplayer-list{{ if options.listFolded }} xiao-mplayer-list-hide{{ /if }}">
+    {{ include './list-item.art' getObject({
+        theme: options.theme,
+        audio: options.audio,
+        index: 1
+    }) }}
+</ol>
+<div class="xiao-mplayer-body">
+    <div class="xiao-mplayer-pic" style="{{ if cover  }}background-image: url(&quot;{{ cover }}&quot;);{{ /if }}background-color: {{ options.theme }};">
+        <div class="xiao-mplayer-button xiao-mplayer-play">{{@ icons.play }}</div>
+    </div>
+    <div class="xiao-mplayer-info" style="display: none;">
+        <div class="xiao-mplayer-music">
+            <span class="xiao-mplayer-title">No audio</span>
+            <span class="xiao-mplayer-author"></span>
+        </div>
+        <div class="xiao-mplayer-controller">
+            <div class="xiao-mplayer-bar-wrap">
+                <div class="xiao-mplayer-bar">
+                    <div class="xiao-mplayer-loaded" style="width: 0"></div>
+                    <div class="xiao-mplayer-played" style="width: 0; background: {{ options.theme }};">
+                        <span class="xiao-mplayer-thumb" style="background: {{ options.theme }};">
+                            <span class="xiao-mplayer-loading-icon">{{@ icons.loading }}</span>
+                        </span>
+                    </div>
+                </div>
+            </div>
+            <div class="xiao-mplayer-time">
+                <span class="xiao-mplayer-time-inner">
+                    <span class="xiao-mplayer-ptime">00:00</span> / <span class="xiao-mplayer-dtime">00:00</span>
+                </span>
+                <span class="xiao-mplayer-icon xiao-mplayer-icon-back">
+                    {{@ icons.skip }}
+                </span>
+                <span class="xiao-mplayer-icon xiao-mplayer-icon-play">
+                    {{@ icons.play }}
+                </span>
+                <span class="xiao-mplayer-icon xiao-mplayer-icon-forward">
+                    {{@ icons.skip }}
+                </span>
+                <div class="xiao-mplayer-volume-wrap">
+                    <button type="button" class="xiao-mplayer-icon xiao-mplayer-icon-volume-down">
+                        {{@ icons.volumeDown }}
+                    </button>
+                    <div class="xiao-mplayer-volume-bar-wrap">
+                        <div class="xiao-mplayer-volume-bar">
+                            <div class="xiao-mplayer-volume" style="height: 80%; background: {{ options.theme }};"></div>
+                        </div>
+                    </div>
+                </div>
+                <button type="button" class="xiao-mplayer-icon xiao-mplayer-icon-order">
+                    {{ if options.order === 'list' }}{{@ icons.orderList }}{{ else if options.order === 'random' }}{{@ icons.orderRandom }}{{ /if }}
+                </button>
+                <button type="button" class="xiao-mplayer-icon xiao-mplayer-icon-loop">
+                    {{ if options.loop === 'one' }}{{@ icons.loopOne }}{{ else if options.loop === 'all' }}{{@ icons.loopAll }}{{ else if options.loop === 'none' }}{{@ icons.loopNone }}{{ /if }}
+                </button>
+                <button type="button" class="xiao-mplayer-icon xiao-mplayer-icon-menu">
+                    {{@ icons.menu }}
+                </button>
+                <button type="button" class="xiao-mplayer-icon xiao-mplayer-icon-lrc">
+                    {{@ icons.lrc }}
+                </button>
+            </div>
+        </div>
+    </div>
+    <div class="xiao-mplayer-notice"></div>
+    <div class="xiao-mplayer-miniswitcher"><button class="xiao-mplayer-icon">{{@ icons.right }}</button></div>
+</div>
+<div class="xiao-mplayer-lrc">
+    <div class="xiao-mplayer-lrc-contents" style="transform: translateY(0); -webkit-transform: translateY(0);"></div>
+</div>
+{{/if}}
