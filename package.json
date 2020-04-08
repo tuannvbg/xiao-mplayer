@@ -15,8 +15,16 @@
         "url": "git+https://github.com/xiao-team/xiao-mplayer.git"
     },
     "author": "zxpsuper",
-    "gitHooks": {
-        "pre-commit": "npm run format:staged"
+    "husky": {
+        "hooks": {
+            "pre-commit": "lint-staged"
+        }
+    },
+    "lint-staged": {
+        "src/**/*.{js,json,css,vue}": [
+            "prettier --write",
+            "eslint --fix"
+        ]
     },
     "license": "ISC",
     "bugs": {
@@ -47,6 +55,7 @@
         "happypack": "^5.0.1",
         "hard-source-webpack-plugin": "^0.13.1",
         "html-webpack-plugin": "^4.0.4",
+        "husky": "^4.2.3",
         "less-loader": "^5.0.0",
         "node-sass": "^4.13.1",
         "opn": "^6.0.0",
@@ -60,7 +69,6 @@
         "webpack": "^4.42.1",
         "webpack-cli": "^3.3.11",
         "webpack-dev-server": "^3.10.3",
-        "webpack-merge": "^4.2.2",
-        "yorkie": "^2.0.0"
+        "webpack-merge": "^4.2.2"
     }
 }
