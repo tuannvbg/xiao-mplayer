@@ -1,6 +1,6 @@
 class Timer {
     constructor(player) {
-        this.player = player
+        this.player = player;
 
         window.requestAnimationFrame = (() =>
             window.requestAnimationFrame ||
@@ -9,69 +9,59 @@ class Timer {
             window.oRequestAnimationFrame ||
             window.msRequestAnimationFrame ||
             function (callback) {
-                window.setTimeout(callback, 1000 / 60)
-            })()
+                window.setTimeout(callback, 1000 / 60);
+            })();
 
-        this.types = ['loading']
+        this.types = ['loading'];
 
-        this.init()
+        this.init();
     }
 
     init() {
         this.types.forEach((item) => {
-            this[`init${item}Checker`]()
-        })
+            this[`init${item}Checker`]();
+        });
     }
 
     initloadingChecker() {
-        let lastPlayPos = 0
-        let currentPlayPos = 0
-        let bufferingDetected = false
+        let lastPlayPos = 0;
+        let currentPlayPos = 0;
+        let bufferingDetected = false;
         this.loadingChecker = setInterval(() => {
             if (this.enableloadingChecker) {
                 // whether the audio is buffering
-                currentPlayPos = this.player.audio.currentTime
-                if (
-                    !bufferingDetected &&
-                    currentPlayPos === lastPlayPos &&
-                    !this.player.audio.paused
-                ) {
-                    this.player.container.classList.add('xiao-mplayer-loading')
-                    bufferingDetected = true
+                currentPlayPos = this.player.audio.currentTime;
+                if (!bufferingDetected && currentPlayPos === lastPlayPos && !this.player.audio.paused) {
+                    this.player.container.classList.add('aplayer-loading');
+                    bufferingDetected = true;
                 }
-                if (
-                    bufferingDetected &&
-                    currentPlayPos > lastPlayPos &&
-                    !this.player.audio.paused
-                ) {
-                    this.player.container.classList.remove(
-                        'xiao-mplayer-loading'
-                    )
-                    bufferingDetected = false
+                if (bufferingDetected && currentPlayPos > lastPlayPos && !this.player.audio.paused) {
+                    this.player.container.classList.remove('aplayer-loading');
+                    bufferingDetected = false;
                 }
-                lastPlayPos = currentPlayPos
+                lastPlayPos = currentPlayPos;
             }
-        }, 100)
+        }, 100);
     }
 
     enable(type) {
-        this[`enable${type}Checker`] = true
+        this[`enable${type}Checker`] = true;
 
         if (type === 'fps') {
-            this.initfpsChecker()
+            this.initfpsChecker();
         }
     }
 
     disable(type) {
-        this[`enable${type}Checker`] = false
+        this[`enable${type}Checker`] = false;
     }
 
     destroy() {
         this.types.forEach((item) => {
-            this[`enable${item}Checker`] = false
-            this[`${item}Checker`] && clearInterval(this[`${item}Checker`])
-        })
+            this[`enable${item}Checker`] = false;
+            this[`${item}Checker`] && clearInterval(this[`${item}Checker`]);
+        });
     }
 }
 
-export default Timer
+export default Timer;
